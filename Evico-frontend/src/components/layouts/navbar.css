@@ -1,0 +1,38 @@
+/* Styles extracted from تسجيل الدخول.html for Navbar and related UI */
+
+* {
+    font-family: 'Alexandria', sans-serif;
+}
+
+body {
+    background-color: #fafafa;
+}
+
+.card {
+    background-color: #ffffff;
+}
+
+.primary-color {
+    color: #0026CF;
+}
+
+.primary-bg {
+    background-color: #0026CF;
+}
+
+.btn-primary {
+    background-color: #0026CF;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #001a9e;
+}
+
+
+
+
+
+
+
+

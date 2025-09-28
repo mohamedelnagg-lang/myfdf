@@ -1,0 +1,1817 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evico Business - منصة الأعمال الرقمية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0026CF;
+            --background-color: #fafafa;
+            --card-background: #ffffff;
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --text-light: #a0aec0;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+            --info-color: #3b82f6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Alexandria', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-primary);
+            direction: rtl;
+            line-height: 1.6;
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: var(--card-background);
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--primary-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 12px 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-color);
+            background: #f8f9ff;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 88px;
+            min-height: calc(100vh - 88px);
+        }
+
+        /* Page Management */
+        .page {
+            display: none;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Login Page Styles */
+        .login-container {
+            min-height: calc(100vh - 88px);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .login-left {
+            background: var(--card-background);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 60px;
+        }
+
+        .login-right {
+            background: var(--background-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 60px;
+        }
+
+        .login-form-container {
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .login-illustration {
+            width: 100%;
+            max-width: 520px;
+            text-align: center;
+        }
+
+        .illustration-icon {
+            width: 240px;
+            height: 240px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%);
+            border-radius: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 40px;
+            color: var(--primary-color);
+            font-size: 100px;
+        }
+
+        .illustration-title {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+
+        .illustration-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Enhanced Login Form */
+        .login-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .login-title {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .login-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        .dynamic-form {
+            margin-bottom: 32px;
+        }
+
+        .smart-input-container {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .smart-input {
+            width: 100%;
+            padding: 20px 64px 20px 24px;
+            font-size: 16px;
+            background: var(--card-background);
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            font-family: 'Alexandria', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .smart-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: var(--card-background);
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .smart-input:focus + .input-icon {
+            color: var(--primary-color);
+        }
+
+        .input-type-indicator {
+            position: absolute;
+            left: 56px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+            color: var(--primary-color);
+            font-weight: 600;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .input-type-indicator.show {
+            opacity: 1;
+        }
+
+        /* Dynamic Password/OTP/Nafath Fields */
+        .secondary-field {
+            opacity: 0;
+            height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            margin-bottom: 0;
+        }
+
+        .secondary-field.show {
+            opacity: 1;
+            height: auto;
+            margin-bottom: 24px;
+        }
+
+        .secondary-input {
+            width: 100%;
+            padding: 20px 24px;
+            font-size: 16px;
+            background: var(--card-background);
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            font-family: 'Alexandria', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .secondary-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .otp-container {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .otp-digit {
+            width: 56px;
+            height: 56px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 700;
+            background: var(--card-background);
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .otp-digit:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 20px 32px;
+            font-size: 16px;
+            font-weight: 700;
+            border: none;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Alexandria', sans-serif;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #001a9e;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--background-color);
+            color: var(--text-primary);
+            border: 2px solid #e2e8f0;
+        }
+
+        .btn-secondary:hover {
+            background: #f7fafc;
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+
+        .btn-large {
+            padding: 24px 40px;
+            font-size: 18px;
+        }
+
+        /* Social Login */
+        .social-divider {
+            text-align: center;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .social-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #e2e8f0;
+        }
+
+        .social-divider span {
+            background: var(--background-color);
+            padding: 0 20px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 32px;
+        }
+
+        .social-btn {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 24px;
+            color: white;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-4px);
+        }
+
+        .social-btn.google {
+            background: #db4437;
+        }
+
+        .social-btn.apple {
+            background: #000000;
+        }
+
+        .social-btn.huawei {
+            background: #ff6b35;
+        }
+
+        /* Registration Styles */
+        .register-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        .register-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .register-title {
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+
+        .register-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+        }
+
+        /* Step Indicator */
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 60px 0;
+            gap: 32px;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            color: var(--text-light);
+        }
+
+        .step-number {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .step.active {
+            color: var(--primary-color);
+        }
+
+        .step.active .step-number {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .step.completed {
+            color: var(--success-color);
+        }
+
+        .step.completed .step-number {
+            background: var(--success-color);
+            color: white;
+        }
+
+        /* Account Types Grid */
+        .account-types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin: 60px 0;
+        }
+
+        .account-type-card {
+            background: var(--card-background);
+            padding: 40px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            border: 3px solid transparent;
+        }
+
+        .account-type-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-color);
+        }
+
+        .account-type-card.selected {
+            background: #f8f9ff;
+            border-color: var(--primary-color);
+        }
+
+        .account-type-card.selected::before {
+            content: '✓';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 32px;
+            height: 32px;
+            background: var(--success-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .account-icon {
+            width: 96px;
+            height: 96px;
+            background: #f8f9ff;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 32px;
+            font-size: 40px;
+            color: var(--primary-color);
+        }
+
+        .account-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .account-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        /* Enhanced Form Fields */
+        .form-section {
+            background: var(--card-background);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 32px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .section-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--primary-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 16px;
+            background: var(--background-color);
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-family: 'Alexandria', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: var(--card-background);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* File Upload */
+        .file-upload-area {
+            border: 3px dashed var(--primary-color);
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 32px 0;
+        }
+
+        .file-upload-area:hover {
+            background: #f8f9ff;
+            border-color: #001a9e;
+        }
+
+        .upload-icon {
+            font-size: 64px;
+            color: var(--primary-color);
+            margin-bottom: 24px;
+        }
+
+        .upload-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+        }
+
+        .upload-subtitle {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        /* Dashboard Styles */
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        .dashboard-header {
+            background: var(--card-background);
+            padding: 60px;
+            border-radius: 24px;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .dashboard-title {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .dashboard-subtitle {
+            color: var(--text-secondary);
+            font-size: 18px;
+        }
+
+        .status-badge {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 24px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-approved {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: var(--card-background);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .stat-icon {
+            width: 80px;
+            height: 80px;
+            background: #f8f9ff;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            color: var(--primary-color);
+            font-size: 32px;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .login-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .login-left {
+                order: 2;
+            }
+            
+            .login-right {
+                order: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 16px;
+            }
+            
+            .login-left,
+            .login-right {
+                padding: 40px 24px;
+            }
+            
+            .register-container,
+            .dashboard-container {
+                padding: 40px 16px;
+            }
+            
+            .account-types-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .step-indicator {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .dashboard-header {
+                padding: 40px 24px;
+                text-align: right;
+            }
+            
+            .status-badge {
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .illustration-icon {
+                width: 180px;
+                height: 180px;
+                font-size: 80px;
+            }
+            
+            .login-title {
+                font-size: 28px;
+            }
+            
+            .register-title {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .otp-container {
+                gap: 8px;
+            }
+            
+            .otp-digit {
+                width: 48px;
+                height: 48px;
+                font-size: 18px;
+            }
+            
+            .social-buttons {
+                gap: 16px;
+            }
+            
+            .social-btn {
+                width: 56px;
+                height: 56px;
+                font-size: 20px;
+            }
+        }
+
+        /* Helper Classes */
+        .text-center { text-align: center; }
+        .mb-4 { margin-bottom: 24px; }
+        .mt-4 { margin-top: 24px; }
+        .hidden { display: none; }
+        .visible { display: block; }
+
+        /* Alerts */
+        .alert {
+            padding: 20px 24px;
+            border-radius: 16px;
+            margin: 24px 0;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-weight: 500;
+        }
+
+        .alert-warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .alert-info {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+    </style>
+<script src="https://puc.poecdn.net/authenticated_preview_page/syncedState.bd4eeeb8e8e02052ee92.js"></script></head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-chart-network"></i>
+                </div>
+                Evico Business
+            </div>
+            <div class="nav-menu">
+                <a href="#" class="nav-link" onclick="showPage('login')" id="loginNav">تسجيل الدخول</a>
+                <a href="#" class="nav-link" onclick="showPage('register')" id="registerNav">إنشاء حساب</a>
+                <a href="#" class="nav-link hidden" onclick="showPage('dashboard')" id="dashboardNav">الداشبورد</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- صفحة تسجيل الدخول -->
+        <div id="login" class="page active">
+            <div class="login-container">
+                <div class="login-right">
+                    <div class="login-form-container">
+                        <div class="login-header">
+                            <h1 class="login-title">أهلاً وسهلاً</h1>
+                            <p class="login-subtitle">سجل دخولك للوصول إلى حسابك في Evico Business</p>
+                        </div>
+
+                        <form id="loginForm" class="dynamic-form">
+                            <!-- Primary Input Field -->
+                            <div class="smart-input-container">
+                                <input type="text" class="smart-input" id="primaryInput" placeholder="البريد الإلكتروني / رقم الجوال / رقم الهوية" required="">
+                                <i class="fas fa-user input-icon" id="primaryIcon"></i>
+                                <span class="input-type-indicator" id="inputTypeIndicator"></span>
+                            </div>
+
+                            <!-- Secondary Field (Password) -->
+                            <div class="secondary-field" id="passwordField">
+                                <input type="password" class="secondary-input" id="passwordInput" placeholder="كلمة المرور" required="">
+                            </div>
+
+                            <!-- Secondary Field (OTP) -->
+                            <div class="secondary-field" id="otpField">
+                                <div class="text-center mb-4">
+                                    <p style="color: var(--text-secondary); margin-bottom: 16px;">
+                                        تم إرسال رمز التحقق إلى رقم جوالك
+                                    </p>
+                                    <button type="button" class="btn btn-secondary" onclick="sendOTP()">
+                                        إرسال رمز التحقق
+                                    </button>
+                                </div>
+                                <div class="otp-container">
+                                    <input type="text" class="otp-digit" maxlength="1" data-index="0">
+                                    <input type="text" class="otp-digit" maxlength="1" data-index="1">
+                                    <input type="text" class="otp-digit" maxlength="1" data-index="2">
+                                    <input type="text" class="otp-digit" maxlength="1" data-index="3">
+                                    <input type="text" class="otp-digit" maxlength="1" data-index="4">
+                                    <input type="text" class="otp-digit" maxlength="1" data-index="5">
+                                </div>
+                            </div>
+
+                            <!-- Secondary Field (Nafath) -->
+                            <div class="secondary-field" id="nafathField">
+                                <div class="text-center mb-4">
+                                    <div style="background: var(--card-background); padding: 32px; border-radius: 16px; margin-bottom: 24px;">
+                                        <div style="font-size: 64px; color: var(--primary-color); margin-bottom: 16px;">
+                                            <i class="fas fa-mobile-alt"></i>
+                                        </div>
+                                        <h4 style="color: var(--text-primary); margin-bottom: 12px;">افتح تطبيق أبشر</h4>
+                                        <p style="color: var(--text-secondary);">وافق على طلب المصادقة للمتابعة</p>
+                                    </div>
+                                    <button type="button" class="btn btn-primary" onclick="requestNafath()">
+                                        إرسال طلب المصادقة
+                                    </button>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-full btn-large" id="submitBtn">
+                                <i class="fas fa-sign-in-alt"></i>
+                                تسجيل الدخول
+                            </button>
+                        </form>
+
+                        <div class="social-divider">
+                            <span>أو تسجيل الدخول عبر</span>
+                        </div>
+                        
+                        <div class="social-buttons">
+                            <div class="social-btn google" onclick="loginWithProvider('google')" title="Google">
+                                <i class="fab fa-google"></i>
+                            </div>
+                            <div class="social-btn apple" onclick="loginWithProvider('apple')" title="Apple">
+                                <i class="fab fa-apple"></i>
+                            </div>
+                            <div class="social-btn huawei" onclick="loginWithProvider('huawei')" title="Huawei">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <span style="color: var(--text-secondary);">ليس لديك حساب؟</span>
+                            <a href="#" onclick="showPage('register')" style="color: var(--primary-color); text-decoration: none; font-weight: 700; margin-right: 8px;">
+                                إنشاء حساب جديد
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="login-left">
+                    <div class="login-illustration">
+                        <div class="illustration-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h2 class="illustration-title">Evico Business</h2>
+                        <p class="illustration-subtitle">
+                            منصة الأعمال الرقمية الرائدة في المملكة العربية السعودية. 
+                            ابدأ رحلتك نحو النجاح الرقمي مع حلولنا المتطورة والذكية.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- صفحة إنشاء حساب - الخطوة 1 -->
+        <div id="register" class="page">
+            <div class="register-container">
+                <div class="register-header">
+                    <h1 class="register-title">إنشاء حساب تجاري جديد</h1>
+                    <p class="register-subtitle">اختر نوع الحساب المناسب لنشاطك التجاري في منصة Evico Business</p>
+                </div>
+
+                <div class="step-indicator">
+                    <div class="step active">
+                        <div class="step-number">1</div>
+                        <span>نوع الحساب</span>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <span>المعلومات</span>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <span>المراجعة</span>
+                    </div>
+                </div>
+
+                <div class="account-types-grid">
+                    <div class="account-type-card" onclick="selectAccountType('company')">
+                        <div class="account-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h3 class="account-title">شركة عامة</h3>
+                        <p class="account-description">
+                            لإدارة الأنشطة التجارية العامة والخدمات المتنوعة بكفاءة وفعالية عالية.
+                        </p>
+                    </div>
+
+                    <div class="account-type-card" onclick="selectAccountType('sports')">
+                        <div class="account-icon">
+                            <i class="fas fa-futbol"></i>
+                        </div>
+                        <h3 class="account-title">تأجير ملعب</h3>
+                        <p class="account-description">
+                            مخصص للشركات أو الأفراد الذين يقدمون خدمات الملاعب الرياضية وإدارة الحجوزات.
+                        </p>
+                    </div>
+
+                    <div class="account-type-card" onclick="selectAccountType('academy')">
+                        <div class="account-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <h3 class="account-title">أكاديمية تدريب</h3>
+                        <p class="account-description">
+                            أكاديمية تدريب الألعاب الرياضية البدنية والإلكترونية مع برامج تدريبية متخصصة.
+                        </p>
+                    </div>
+
+                    <div class="account-type-card" onclick="selectAccountType('esports')">
+                        <div class="account-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3 class="account-title">فريق إلكتروني</h3>
+                        <p class="account-description">
+                            للفرق الخاصة بالرياضات الإلكترونية وإدارة أنشطتهم ومسابقاتهم المختلفة.
+                        </p>
+                    </div>
+
+                    <div class="account-type-card" onclick="selectAccountType('club')">
+                        <div class="account-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="account-title">نادي</h3>
+                        <p class="account-description">
+                            للأندية الرياضية أو الترفيهية الرسمية وإدارة أعضائها وأنشطتها المتنوعة.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button class="btn btn-primary btn-large" onclick="nextStep()" disabled="" id="nextBtn">
+                        <span>التالي</span>
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- صفحة إنشاء حساب - الخطوة 2 -->
+        <div id="registerStep2" class="page">
+            <div class="register-container">
+                <div class="register-header">
+                    <h1 class="register-title">معلومات النشاط التجاري</h1>
+                    <p class="register-subtitle">يرجى إدخال بيانات نشاطك التجاري بدقة لمساعدتنا في خدمتك بشكل أفضل</p>
+                </div>
+
+                <div class="step-indicator">
+                    <div class="step completed">
+                        <div class="step-number">✓</div>
+                        <span>نوع الحساب</span>
+                    </div>
+                    <div class="step active">
+                        <div class="step-number">2</div>
+                        <span>المعلومات</span>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <span>المراجعة</span>
+                    </div>
+                </div>
+
+                <form id="businessInfoForm">
+                    <!-- البيانات الأساسية -->
+                    <div class="form-section">
+                        <div class="section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <h3 class="section-title">البيانات الأساسية</h3>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">الاسم التجاري *</label>
+                                <input type="text" class="form-input" name="businessName" required="">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">اسم المالك *</label>
+                                <input type="text" class="form-input" name="ownerName" required="">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">رقم السجل التجاري *</label>
+                                <input type="text" class="form-input" name="commercialRegister" required="">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">تاريخ تأسيس الشركة *</label>
+                                <input type="date" class="form-input" name="establishmentDate" required="">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">المدينة *</label>
+                                <select class="form-select" name="city" required="">
+                                    <option value="">اختر المدينة</option>
+                                    <option value="riyadh">الرياض</option>
+                                    <option value="jeddah">جدة</option>
+                                    <option value="dammam">الدمام</option>
+                                    <option value="mecca">مكة المكرمة</option>
+                                    <option value="medina">المدينة المنورة</option>
+                                    <option value="taif">الطائف</option>
+                                    <option value="tabuk">تبوك</option>
+                                    <option value="abha">أبها</option>
+                                    <option value="khobar">الخبر</option>
+                                    <option value="jubail">الجبيل</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">الحي/المنطقة *</label>
+                                <input type="text" class="form-input" name="district" required="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">وصف النشاط التجاري *</label>
+                            <textarea class="form-textarea" name="businessDescription" placeholder="اكتب وصفاً مفصلاً عن نشاطك التجاري..." required=""></textarea>
+                        </div>
+                    </div>
+
+                    <!-- معلومات الشركة -->
+                    <div class="form-section">
+                        <div class="section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <h3 class="section-title">معلومات الشركة</h3>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">عدد الموظفين *</label>
+                                <select class="form-select" name="employeesCount" required="">
+                                    <option value="">اختر العدد</option>
+                                    <option value="1-5">1-5 موظفين</option>
+                                    <option value="6-15">6-15 موظف</option>
+                                    <option value="16-50">16-50 موظف</option>
+                                    <option value="51-100">51-100 موظف</option>
+                                    <option value="101-500">101-500 موظف</option>
+                                    <option value="500+">أكثر من 500 موظف</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">رأس المال *</label>
+                                <select class="form-select" name="capital" required="">
+                                    <option value="">اختر الفئة</option>
+                                    <option value="less-100k">أقل من 100,000 ريال</option>
+                                    <option value="100k-500k">100,000 - 500,000 ريال</option>
+                                    <option value="500k-1m">500,000 - 1,000,000 ريال</option>
+                                    <option value="1m-5m">1,000,000 - 5,000,000 ريال</option>
+                                    <option value="5m-10m">5,000,000 - 10,000,000 ريال</option>
+                                    <option value="10m+">أكثر من 10,000,000 ريال</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">نوع النشاط الاقتصادي *</label>
+                                <select class="form-select" name="economicActivity" required="">
+                                    <option value="">اختر النوع</option>
+                                    <option value="retail">تجارة تجزئة</option>
+                                    <option value="wholesale">تجارة جملة</option>
+                                    <option value="manufacturing">تصنيع</option>
+                                    <option value="services">خدمات</option>
+                                    <option value="technology">تقنية معلومات</option>
+                                    <option value="construction">إنشاءات</option>
+                                    <option value="food">مطاعم ومأكولات</option>
+                                    <option value="education">تعليم وتدريب</option>
+                                    <option value="healthcare">رعاية صحية</option>
+                                    <option value="sports">رياضة وترفيه</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">سنوات الخبرة *</label>
+                                <select class="form-select" name="experienceYears" required="">
+                                    <option value="">اختر المدة</option>
+                                    <option value="new">شركة جديدة</option>
+                                    <option value="1-2">1-2 سنة</option>
+                                    <option value="3-5">3-5 سنوات</option>
+                                    <option value="6-10">6-10 سنوات</option>
+                                    <option value="11-20">11-20 سنة</option>
+                                    <option value="20+">أكثر من 20 سنة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">متوسط المبيعات الشهرية</label>
+                                <select class="form-select" name="monthlySales">
+                                    <option value="">اختر الفئة (اختياري)</option>
+                                    <option value="less-10k">أقل من 10,000 ريال</option>
+                                    <option value="10k-50k">10,000 - 50,000 ريال</option>
+                                    <option value="50k-100k">50,000 - 100,000 ريال</option>
+                                    <option value="100k-500k">100,000 - 500,000 ريال</option>
+                                    <option value="500k-1m">500,000 - 1,000,000 ريال</option>
+                                    <option value="1m+">أكثر من 1,000,000 ريال</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">نوع الكيان القانوني *</label>
+                                <select class="form-select" name="legalEntity" required="">
+                                    <option value="">اختر النوع</option>
+                                    <option value="individual">مؤسسة فردية</option>
+                                    <option value="llc">شركة ذات مسؤولية محدودة</option>
+                                    <option value="joint-stock">شركة مساهمة</option>
+                                    <option value="partnership">شركة تضامن</option>
+                                    <option value="limited-partnership">شركة توصية</option>
+                                    <option value="branch">فرع شركة أجنبية</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- المستندات الرسمية -->
+                    <div class="form-section">
+                        <div class="section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <h3 class="section-title">المستندات الرسمية</h3>
+                        </div>
+                        
+                        <div class="file-upload-area" onclick="document.getElementById('documents').click()">
+                            <div class="upload-icon">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <h4 class="upload-title">رفع المستندات المطلوبة</h4>
+                            <p class="upload-subtitle">السجل التجاري، رخصة البلدية، شهادة الزكاة والضريبة، صورة الهوية</p>
+                            <input type="file" id="documents" multiple="" accept=".pdf,.jpg,.png,.jpeg" style="display: none;">
+                        </div>
+                    </div>
+
+                    <!-- وسائل التواصل -->
+                    <div class="form-section">
+                        <div class="section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <h3 class="section-title">وسائل التواصل</h3>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">البريد الإلكتروني *</label>
+                                <input type="email" class="form-input" name="email" required="">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">رقم الهاتف *</label>
+                                <input type="tel" class="form-input" name="phone" required="">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">رقم الفاكس</label>
+                                <input type="tel" class="form-input" name="fax">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">الموقع الإلكتروني</label>
+                                <input type="url" class="form-input" name="website">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">العنوان الكامل *</label>
+                            <textarea class="form-textarea" name="fullAddress" placeholder="اكتب العنوان الكامل مع الرمز البريدي..." required=""></textarea>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 16px; justify-content: center; margin-top: 40px;">
+                        <button type="button" class="btn btn-secondary" onclick="showPage('register')">
+                            <i class="fas fa-arrow-right"></i>
+                            السابق
+                        </button>
+                        <button type="submit" class="btn btn-primary btn-large">
+                            <span>التالي</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- صفحة إنشاء حساب - الخطوة 3 -->
+        <div id="registerStep3" class="page">
+            <div class="register-container">
+                <div class="register-header">
+                    <h1 class="register-title">مراجعة وإنهاء</h1>
+                    <p class="register-subtitle">تأكد من صحة البيانات المدخلة قبل إنشاء الحساب</p>
+                </div>
+
+                <div class="step-indicator">
+                    <div class="step completed">
+                        <div class="step-number">✓</div>
+                        <span>نوع الحساب</span>
+                    </div>
+                    <div class="step completed">
+                        <div class="step-number">✓</div>
+                        <span>المعلومات</span>
+                    </div>
+                    <div class="step active">
+                        <div class="step-number">3</div>
+                        <span>المراجعة</span>
+                    </div>
+                </div>
+
+                <div id="reviewData">
+                    <!-- سيتم إدراج البيانات للمراجعة -->
+                </div>
+
+                <div style="display: flex; gap: 16px; justify-content: center; margin-top: 40px;">
+                    <button type="button" class="btn btn-secondary" onclick="showPage('registerStep2')">
+                        <i class="fas fa-arrow-right"></i>
+                        السابق
+                    </button>
+                    <button type="button" class="btn btn-primary btn-large" onclick="completeRegistration()">
+                        <i class="fas fa-check"></i>
+                        إنشاء الحساب
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- الداشبورد -->
+        <div id="dashboard" class="page">
+            <div class="dashboard-container">
+                <!-- Header -->
+                <div class="dashboard-header">
+                    <div class="status-badge status-pending">
+                        <i class="fas fa-clock"></i>
+                        قيد التفعيل
+                    </div>
+                    <h1 class="dashboard-title">مرحباً بك في Evico Business</h1>
+                    <p class="dashboard-subtitle">منصة الأعمال الرقمية المتطورة لإدارة نشاطك التجاري بكفاءة</p>
+                </div>
+
+                <!-- Alert -->
+                <div class="alert alert-warning">
+                    <i class="fas fa-info-circle"></i>
+                    <div>
+                        <strong>تم إنشاء الحساب بنجاح!</strong><br>
+                        نرجو انتظار التفعيل من فريقنا المختص. ستصلك رسالة تأكيد عند اكتمال المراجعة خلال 24-48 ساعة.
+                    </div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-value">1</div>
+                        <div class="stat-label">يوم منذ التسجيل</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-file-check"></i>
+                        </div>
+                        <div class="stat-value" id="documentsCount">0</div>
+                        <div class="stat-label">مستندات مرفوعة</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div class="stat-value">100%</div>
+                        <div class="stat-label">اكتمال البيانات</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-shield-check"></i>
+                        </div>
+                        <div class="stat-value">آمن</div>
+                        <div class="stat-label">حالة الأمان</div>
+                    </div>
+                </div>
+
+                <!-- Business Information Display -->
+                <div id="businessInfo" style="display: none;">
+                    <!-- سيتم إدراج معلومات الشركة هنا -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global Variables
+        let selectedAccountType = '';
+        let formData = {};
+        let uploadedFiles = [];
+        let currentInputType = 'unknown';
+
+        // Account Types Configuration
+        const accountTypes = {
+            'company': {
+                name: 'شركة عامة',
+                icon: 'fas fa-building',
+                description: 'لإدارة الأنشطة التجارية العامة والخدمات المتنوعة'
+            },
+            'sports': {
+                name: 'تأجير ملعب',
+                icon: 'fas fa-futbol',
+                description: 'مخصص للشركات أو الأفراد الذين يقدمون خدمات الملاعب الرياضية'
+            },
+            'academy': {
+                name: 'أكاديمية تدريب',
+                icon: 'fas fa-dumbbell',
+                description: 'أكاديمية تدريب الألعاب الرياضية البدنية والإلكترونية'
+            },
+            'esports': {
+                name: 'فريق إلكتروني',
+                icon: 'fas fa-gamepad',
+                description: 'للفرق الخاصة بالرياضات الإلكترونية وإدارة أنشطتهم'
+            },
+            'club': {
+                name: 'نادي',
+                icon: 'fas fa-users',
+                description: 'للأندية الرياضية أو الترفيهية الرسمية'
+            }
+        };
+
+        // Cities Configuration
+        const cities = {
+            'riyadh': 'الرياض',
+            'jeddah': 'جدة',
+            'dammam': 'الدمام',
+            'mecca': 'مكة المكرمة',
+            'medina': 'المدينة المنورة',
+            'taif': 'الطائف',
+            'tabuk': 'تبوك',
+            'abha': 'أبها',
+            'khobar': 'الخبر',
+            'jubail': 'الجبيل'
+        };
+
+        // Page Navigation
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            document.getElementById(pageId).classList.add('active');
+            updateNavigation(pageId);
+            window.scrollTo(0, 0);
+        }
+
+        function updateNavigation(activePageId) {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            if (activePageId === 'dashboard') {
+                document.getElementById('dashboardNav').classList.remove('hidden');
+                document.getElementById('dashboardNav').classList.add('active');
+            }
+        }
+
+        // Smart Input Detection
+        function detectInputType(value) {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const phonePattern = /^(05|5)[0-9]{8}$/;
+            const idPattern = /^[12][0-9]{9}$/;
+            
+            if (emailPattern.test(value)) {
+                return { type: 'email', icon: 'fas fa-envelope', label: 'بريد إلكتروني' };
+            } else if (phonePattern.test(value.replace(/[\s-]/g, ''))) {
+                return { type: 'phone', icon: 'fas fa-mobile-alt', label: 'رقم جوال' };
+            } else if (idPattern.test(value)) {
+                return { type: 'id', icon: 'fas fa-id-card', label: 'رقم هوية' };
+            } else {
+                return { type: 'unknown', icon: 'fas fa-user', label: '' };
+            }
+        }
+
+        function showSecondaryField(type) {
+            // Hide all secondary fields
+            document.querySelectorAll('.secondary-field').forEach(field => {
+                field.classList.remove('show');
+            });
+
+            // Show appropriate field
+            if (type === 'email') {
+                document.getElementById('passwordField').classList.add('show');
+            } else if (type === 'phone') {
+                document.getElementById('otpField').classList.add('show');
+            } else if (type === 'id') {
+                document.getElementById('nafathField').classList.add('show');
+            }
+
+            currentInputType = type;
+        }
+
+        // OTP Functions
+        function sendOTP() {
+            // Simulate OTP sending
+            const button = event.target;
+            button.textContent = 'تم الإرسال ✓';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                button.textContent = 'إعادة الإرسال';
+                button.disabled = false;
+            }, 30000);
+        }
+
+        function requestNafath() {
+            // Simulate Nafath request
+            const button = event.target;
+            button.textContent = 'جاري المصادقة...';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                button.textContent = 'تم التأكيد ✓';
+                button.style.background = 'var(--success-color)';
+            }, 3000);
+        }
+
+        // Login Functions
+        function loginWithProvider(provider) {
+            setTimeout(() => {
+                showPage('dashboard');
+                updateDashboard();
+            }, 1000);
+        }
+
+        // Registration Functions
+        function selectAccountType(type) {
+            selectedAccountType = type;
+            
+            document.querySelectorAll('.account-type-card').forEach(element => {
+                element.classList.remove('selected');
+            });
+            event.target.closest('.account-type-card').classList.add('selected');
+            
+            document.getElementById('nextBtn').disabled = false;
+        }
+
+        function nextStep() {
+            if (selectedAccountType) {
+                showPage('registerStep2');
+            }
+        }
+
+        function completeRegistration() {
+            const form = document.getElementById('businessInfoForm');
+            const formDataObj = new FormData(form);
+            
+            formData = {};
+            for (let [key, value] of formDataObj.entries()) {
+                formData[key] = value;
+            }
+            formData.accountType = selectedAccountType;
+            formData.uploadedFiles = uploadedFiles;
+            
+            updateDashboard();
+            showPage('dashboard');
+        }
+
+        function updateDashboard() {
+            // Update documents count
+            if (uploadedFiles.length > 0) {
+                document.getElementById('documentsCount').textContent = uploadedFiles.length;
+            }
+            
+            // Show business info if available
+            if (Object.keys(formData).length > 0) {
+                displayBusinessInfo();
+            }
+        }
+
+        function displayBusinessInfo() {
+            const businessInfoContainer = document.getElementById('businessInfo');
+            businessInfoContainer.style.display = 'block';
+            
+            const accountType = accountTypes[selectedAccountType];
+            
+            businessInfoContainer.innerHTML = `
+                <div class="form-section">
+                    <div class="section-header">
+                        <div class="section-icon">
+                            <i class="${accountType?.icon || 'fas fa-building'}"></i>
+                        </div>
+                        <h3 class="section-title">معلومات الحساب</h3>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div>
+                            <strong>نوع الحساب:</strong>
+                            <p>${accountType?.name || '-'}</p>
+                        </div>
+                        <div>
+                            <strong>الاسم التجاري:</strong>
+                            <p>${formData.businessName || '-'}</p>
+                        </div>
+                        <div>
+                            <strong>اسم المالك:</strong>
+                            <p>${formData.ownerName || '-'}</p>
+                        </div>
+                        <div>
+                            <strong>المدينة:</strong>
+                            <p>${cities[formData.city] || '-'}</p>
+                        </div>
+                        <div>
+                            <strong>عدد الموظفين:</strong>
+                            <p>${formData.employeesCount || '-'}</p>
+                        </div>
+                        <div>
+                            <strong>البريد الإلكتروني:</strong>
+                            <p>${formData.email || '-'}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function generateReviewData() {
+            const reviewContainer = document.getElementById('reviewData');
+            const accountType = accountTypes[selectedAccountType];
+            
+            reviewContainer.innerHTML = `
+                <div class="form-section">
+                    <div class="section-header">
+                        <div class="section-icon">
+                            <i class="${accountType?.icon || 'fas fa-building'}"></i>
+                        </div>
+                        <h3 class="section-title">نوع الحساب</h3>
+                    </div>
+                    <div style="background: var(--background-color); padding: 24px; border-radius: 16px;">
+                        <h4 style="color: var(--text-primary); font-weight: 700; margin-bottom: 8px;">
+                            ${accountType?.name || 'غير محدد'}
+                        </h4>
+                        <p style="color: var(--text-secondary);">
+                            ${accountType?.description || ''}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <div class="section-header">
+                        <div class="section-icon">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <h3 class="section-title">البيانات الأساسية</h3>
+                    </div>
+                    <div class="form-grid">
+                        <div>
+                            <strong>الاسم التجاري:</strong>
+                            <p>${document.querySelector('input[name="businessName"]').value || '-'}</p>
+                        </div>
+                        <div>
+                            <strong>اسم المالك:</strong>
+                            <p>${document.querySelector('input[name="ownerName"]').value || '-'}</p>
+                        </div>
+                        <div>
+                            <strong>المدينة:</strong>
+                            <p>${cities[document.querySelector('select[name="city"]').value] || '-'}</p>
+                        </div>
+                        <div>
+                            <strong>عدد الموظفين:</strong>
+                            <p>${document.querySelector('select[name="employeesCount"]').value || '-'}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <div class="section-header">
+                        <div class="section-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3 class="section-title">المستندات</h3>
+                    </div>
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle"></i>
+                        تم رفع ${uploadedFiles.length} مستند بنجاح
+                    </div>
+                </div>
+            `;
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smart input detection
+            const primaryInput = document.getElementById('primaryInput');
+            const primaryIcon = document.getElementById('primaryIcon');
+            const typeIndicator = document.getElementById('inputTypeIndicator');
+
+            primaryInput.addEventListener('input', function() {
+                const value = this.value.trim();
+                const detection = detectInputType(value);
+                
+                primaryIcon.className = `${detection.icon} input-icon`;
+                
+                if (detection.type !== 'unknown' && value.length > 0) {
+                    typeIndicator.textContent = detection.label;
+                    typeIndicator.classList.add('show');
+                    showSecondaryField(detection.type);
+                } else {
+                    typeIndicator.classList.remove('show');
+                    document.querySelectorAll('.secondary-field').forEach(field => {
+                        field.classList.remove('show');
+                    });
+                }
+            });
+
+            // OTP input handling
+            const otpInputs = document.querySelectorAll('.otp-digit');
+            otpInputs.forEach((input, index) => {
+                input.addEventListener('input', function() {
+                    if (this.value.length === 1 && index < otpInputs.length - 1) {
+                        otpInputs[index + 1].focus();
+                    }
+                });
+                
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Backspace' && this.value.length === 0 && index > 0) {
+                        otpInputs[index - 1].focus();
+                    }
+                });
+            });
+
+            // Login form submission
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                setTimeout(() => {
+                    updateDashboard();
+                    showPage('dashboard');
+                }, 1000);
+            });
+
+            // Business info form submission
+            document.getElementById('businessInfoForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                generateReviewData();
+                showPage('registerStep3');
+            });
+
+            // File upload handling
+            document.getElementById('documents').addEventListener('change', function(e) {
+                const files = Array.from(e.target.files);
+                uploadedFiles = files;
+                
+                if (files.length > 0) {
+                    const fileUpload = this.parentElement;
+                    fileUpload.innerHTML = `
+                        <div class="upload-icon" style="color: var(--success-color);">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h4 class="upload-title" style="color: var(--success-color);">تم رفع ${files.length} ملف بنجاح</h4>
+                        <p class="upload-subtitle">انقر لتغيير الملفات أو إضافة المزيد</p>
+                    `;
+                }
+            });
+        });
+    </script>
+
+
+</body></html>

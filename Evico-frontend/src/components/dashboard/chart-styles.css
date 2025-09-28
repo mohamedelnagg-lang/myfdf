@@ -1,0 +1,24 @@
+/* Chart Styles */
+.chart-bar {
+    width: 30px;
+    background-color: #0026CF;
+    border-radius: 4px 4px 0 0;
+    transition: all 0.3s ease;
+    position: relative;
+    min-height: 20px;
+}
+
+.chart-bar:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
+.pie-chart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pie-legend {
+    margin-top: 1rem;
+}

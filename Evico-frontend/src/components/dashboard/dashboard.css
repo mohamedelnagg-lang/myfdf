@@ -1,0 +1,702 @@
+/* Styles for ScreenManage tab, extracted from الشركات  (1).html */
+
+.tab-content {
+    /* No explicit background, uses parent */
+}
+
+
+.feature-card {
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    padding: 1.5rem;
+}
+
+.text-evico-blue {
+    color: #0026CF;
+}
+
+.bg-evico-blue {
+    background-color: #0026CF;
+}
+
+.btn-primary {
+    background-color: #0026CF;
+    color: #fff;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #001a9e;
+}
+
+.btn-secondary {
+    background-color: #f3f4f6;
+    color: #374151;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid #d1d5db;
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background-color: #e5e7eb;
+}
+
+.icon-svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.drag-drop-area {
+    border: 2px dashed #0026CF;
+    padding: 2rem;
+    text-align: center;
+    background: #f8f9ff;
+    border-radius: 0.75rem;
+    transition: border-color 0.3s ease;
+}
+
+.drag-drop-area:hover {
+    border-color: #001a9e;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    text-align: center;
+    padding: 1rem;
+    background: #f9fafb;
+    border-radius: 0.5rem;
+}
+
+.calendar-grid>div {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.calendar-grid>div:hover {
+    background-color: #e5e7eb;
+}
+
+.progress-bar {
+    background-color: #e5e7eb;
+    border-radius: 0.5rem;
+    height: 0.5rem;
+    width: 100%;
+    overflow: hidden;
+}
+
+.progress-fill {
+    background-color: #0026CF;
+    height: 100%;
+    border-radius: 0.5rem;
+    transition: width 0.3s ease;
+}
+
+/* RTL support for space-x-reverse */
+[dir="rtl"] .space-x-2>*+* {
+    margin-right: 0.5rem;
+    margin-left: 0;
+}
+
+[dir="rtl"] .space-x-reverse>*+* {
+    margin-left: 0.5rem;
+    margin-right: 0;
+}
+
+/* Styles for CelebritiesCompanies tab */
+
+/* Negative margin for partnership avatars */
+.-space-x-2 > * + * {
+    margin-left: -0.5rem;
+}
+
+/* Styles for MediaHub tab */
+
+/* Media tab buttons */
+.media-tab {
+    transition: all 0.3s ease;
+}
+
+.media-tab:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Social platform cards */
+.social-platform {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.social-platform:hover {
+    background-color: #f3f4f6;
+    border-color: #d1d5db;
+}
+
+.platform-instagram:hover {
+    border-color: #e1306c;
+}
+
+.platform-facebook:hover {
+    border-color: #1877f2;
+}
+
+.platform-youtube:hover {
+    border-color: #ff0000;
+}
+
+.platform-twitter:hover {
+    border-color: #1da1f2;
+}
+
+.platform-tiktok:hover {
+    border-color: #000000;
+}
+
+/* Progress bars */
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background-color: #e5e7eb;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #0026CF, #00AEEF);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+/* Notification badges */
+.notification-badge {
+    background-color: #ef4444;
+    color: white;
+    border-radius: 50%;
+    padding: 0.125rem 0.375rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+    min-width: 1.25rem;
+    text-align: center;
+    position: absolute;
+    top: -4px;
+    right: -4px;
+}
+
+/* Calendar grid */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.25rem;
+}
+
+/* Service cards */
+.service-card {
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.service-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Rating stars */
+.rating-stars {
+    color: #fbbf24;
+    font-size: 1rem;
+}
+
+/* Chat container */
+.chat-container {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background-color: white;
+}
+
+.chat-messages {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 1rem;
+    background-color: #f9fafb;
+}
+
+.message {
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.message.received {
+    background-color: #e5e7eb;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.message.sent {
+    background-color: #0026CF;
+    color: white;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.chat-input-container {
+    padding: 1rem;
+    background-color: white;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* AI typing indicator */
+.ai-typing {
+    text-align: center;
+    color: #6b7280;
+    font-style: italic;
+    margin: 1rem 0;
+    display: none;
+}
+
+/* Styles for Profile tab */
+
+/* Profile tab buttons */
+.profile-tab {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.profile-tab:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile sections */
+.profile-section {
+    display: none;
+}
+
+.profile-section.active {
+    display: block;
+}
+
+/* Job listings in professional section */
+.job-listing {
+    background-color: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Product grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+/* Product cards */
+.product-card {
+    background-color: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.product-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Product image placeholder */
+.product-image {
+    width: 100%;
+    height: 120px;
+    border-radius: 0.5rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3f4f6;
+}
+
+/* Rating stars */
+.rating-stars {
+    color: #fbbf24;
+    font-size: 1rem;
+}
+
+/* Support buttons */
+.support-btn {
+    background: linear-gradient(135deg, #ff6b35, #f7931e);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.support-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(255, 107, 53, 0.3);
+}
+
+/* Premium buttons */
+.premium-btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.premium-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+}
+
+/* Wallet balance card */
+.wallet-balance {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Stats cards */
+.stats-card {
+    background-color: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Project cards */
+.project-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.project-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Certificate cards */
+.certificate-card {
+    background-color: #f9fafb;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Network avatars */
+.network-avatars .avatar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 0.75rem;
+    margin-left: -0.25rem;
+    border: 2px solid white;
+}
+
+/* Order status badges */
+.order-status {
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.order-status.completed {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.order-status.in-progress {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+/* Sales stats */
+.sales-stats {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.sales-stats .total {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #16a34a;
+    margin-bottom: 0.5rem;
+}
+
+.sales-stats .change {
+    font-size: 0.875rem;
+    color: #16a34a;
+}
+
+/* Top products */
+.top-products .product-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.top-products .product-item:last-child {
+    border-bottom: none;
+}
+
+/* Review rating breakdown */
+.rating-breakdown .rating-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.rating-breakdown .star-label {
+    width: 2rem;
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+.rating-breakdown .progress-container {
+    flex: 1;
+    margin: 0 0.5rem;
+}
+
+.rating-breakdown .percentage {
+    width: 3rem;
+    text-align: right;
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* RTL support for space-x-reverse in profile sections */
+[dir="rtl"] .space-x-2 > * + * {
+    margin-right: 0.5rem;
+    margin-left: 0;
+}
+
+[dir="rtl"] .space-x-reverse > * + * {
+    margin-left: 0.5rem;
+    margin-right: 0;
+}
+
+/* Rank badge for navbar */
+.rank-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #f3f4f6;
+    border-radius: 0.5rem;
+    color: #374151;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.rank-badge:hover {
+    background-color: #e5e7eb;
+}
+
+/* Evico white background */
+.bg-evico-white {
+    background-color: #ffffff;
+}
+
+/* Rank option styles */
+.rank-option {
+    transition: all 0.2s ease;
+}
+
+.rank-option:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Workflow step styles */
+.workflow-step {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: #f9fafb;
+    margin-bottom: 0.5rem;
+}
+
+.workflow-step.completed {
+    background-color: #dcfce7;
+    border-left: 4px solid #16a34a;
+}
+
+.workflow-step.active {
+    background-color: #dbeafe;
+    border-left: 4px solid #0026CF;
+}
+
+.workflow-step.pending {
+    background-color: #fef3c7;
+    border-left: 4px solid #d97706;
+}
+
+.workflow-step .ml-4 {
+    margin-left: 1rem;
+}
+
+
+/* Payment method hover */
+.hover\:border-evico-blue:hover {
+    border-color: #0026CF;
+}
+
+/* Notification colors */
+.bg-blue-50 { background-color: #eff6ff; }
+.bg-green-50 { background-color: #f0fdf4; }
+.bg-yellow-50 { background-color: #fefce8; }
+
+/* Financial support cards */
+.financial-support-coffee {
+    background: linear-gradient(to right, #fef3c7, #fed7aa);
+    border: 1px solid #f97316;
+}
+
+.financial-support-premium {
+    background: linear-gradient(to right, #e0e7ff, #c7d2fe);
+    border: 1px solid #6366f1;
+}
+
+/* Project images */
+.project-image-ecommerce {
+    background: linear-gradient(to right, #60a5fa, #a855f7);
+}
+
+.project-image-project-mgmt {
+    background: linear-gradient(to right, #34d399, #3b82f6);
+}
+
+.project-image-tech-website {
+    background: linear-gradient(to right, #f472b6, #ef4444);
+}
+
+.project-image-booking {
+    background: linear-gradient(to right, #fbbf24, #f97316);
+}
+
+/* Product images */
+.product-image-web-course {
+    background: linear-gradient(to right, #60a5fa, #a855f7);
+}
+
+.product-image-logo-design {
+    background: linear-gradient(to right, #34d399, #3b82f6);
+}
+
+.product-image-website-template {
+    background: linear-gradient(to right, #f472b6, #ef4444);
+}
+
+.product-image-tech-consultation {
+    background: linear-gradient(to right, #fbbf24, #f97316);
+}
+
+.product-image-programming-book {
+    background: linear-gradient(to right, #818cf8, #a855f7);
+}
+
+/* Network avatars */
+.network-avatar-blue {
+    background-color: #3b82f6;
+}
+
+.network-avatar-green {
+    background-color: #10b981;
+}
+
+.network-avatar-purple {
+    background-color: #8b5cf6;
+}
+
+.network-avatar-orange {
+    background-color: #f97316;
+}
+

@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta name="x-poe-datastore-behavior" content="local_only">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evico Business - منصة الأعمال الرقمية</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Alexandria', sans-serif;
+        }
+
+        body {
+            background-color: #fafafa;
+        }
+
+        .card {
+            background-color: #ffffff;
+        }
+
+        .primary-color {
+            color: #0026CF;
+        }
+
+        .primary-bg {
+            background-color: #0026CF;
+        }
+
+        .btn-primary {
+            background-color: #0026CF;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #001a9e;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #0026CF;
+        }
+
+        .step-indicator {
+            background-color: #e5e7eb;
+            color: #6b7280;
+        }
+
+        .step-indicator.active {
+            background-color: #0026CF;
+            color: white;
+        }
+
+        .step-indicator.completed {
+            background-color: #10b981;
+            color: white;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .rank-card {
+            transition: transform 0.2s ease;
+            cursor: pointer;
+        }
+
+        .rank-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .account-type-card {
+            transition: all 0.2s ease;
+        }
+
+        .account-type-card.selected {
+            border-color: #0026CF;
+            background-color: #f8fafc;
+        }
+    </style>
+    <script src="https://puc.poecdn.net/authenticated_preview_page/syncedState.bd4eeeb8e8e02052ee92.js"></script>
+</head>
+
+<body class="min-h-screen">
+    <!-- Header -->
+    <header class="card py-4 px-6 mb-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-reverse space-x-4">
+                <i class="fas fa-building text-2xl primary-color"></i>
+                <h1 class="text-2xl font-bold primary-color">Evico Business</h1>
+            </div>
+            <nav class="flex space-x-reverse space-x-4">
+                <button id="headerLoginBtn" class="btn-primary px-4 py-2 rounded-lg">تسجيل الدخول</button>
+                <button id="headerRegisterBtn"
+                    class="border border-gray-300 px-4 py-2 rounded-lg hover:bg-gray-50">إنشاء حساب</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="max-w-7xl mx-auto px-4">
+
+        <!-- Login Section -->
+        <section id="loginSection" class="max-w-md mx-auto">
+            <div class="card p-8 rounded-2xl">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">أهلاً وسهلاً</h2>
+                    <p class="text-gray-600">سجل دخولك للوصول إلى حسابك في Evico Business</p>
+                </div>
+
+                <!-- Login Form -->
+                <div class="space-y-4 mb-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">البريد الإلكتروني أو رقم
+                            الجوال</label>
+                        <input type="text" id="loginField"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base"
+                            placeholder="example@email.com أو 05xxxxxxxx">
+
+                        <!-- New Section: معلومات إضافية قبل بيانات الحساب -->
+                        <div id="extraFieldsSection" class="mb-8">
+                            <h3 class="text-lg font-bold text-gray-800 mb-4">معلومات إضافية</h3>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">الجنسية *</label>
+                                    <input type="text" id="nationality"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">تاريخ الميلاد *</label>
+                                    <input type="date" id="birthDate"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">رقم الهوية *</label>
+                                    <input type="text" id="idNumber"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">العنوان *</label>
+                                    <input type="text" id="address"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Password field (shown for email) -->
+                    <div id="passwordField" class="hidden">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">كلمة المرور</label>
+                        <input type="password" id="loginPassword"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base">
+                    </div>
+
+                    <!-- OTP fields (shown for phone) -->
+                    <div id="otpSection" class="hidden space-y-4">
+                        <div class="text-center text-sm text-gray-600">
+                            تم إرسال رمز التحقق إلى رقم جوالك
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">رمز التحقق</label>
+                            <input type="text" id="otpCode"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base text-center"
+                                maxlength="6">
+                        </div>
+                        <button onclick="sendOTP()" class="text-sm primary-color hover:underline">إعادة إرسال
+                            الرمز</button>
+                    </div>
+
+                    <button onclick="handleLogin()" id="loginSubmitBtn" class="w-full btn-primary py-3 rounded-lg">تسجيل
+                        الدخول</button>
+                </div>
+
+                <div class="text-center mt-6">
+                    <span class="text-gray-600">ليس لديك حساب؟ </span>
+                    <button onclick="showRegister()" class="primary-color font-medium">إنشاء حساب جديد</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Register Section -->
+        <section id="registerSection" class="hidden max-w-4xl mx-auto">
+            <!-- Personal Account Registration -->
+            <div id="personalRegister" class="card p-8 rounded-2xl">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">إنشاء حساب فردي</h2>
+                    <p class="text-gray-600">املأ البيانات التالية لإنشاء حسابك الشخصي</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">الاسم الأول *</label>
+                        <input type="text" id="firstName"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">الاسم الأخير *</label>
+                        <input type="text" id="lastName"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">البريد الإلكتروني *</label>
+                        <input type="email" id="registerEmail"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">رقم الجوال *</label>
+                        <input type="tel" id="registerPhone"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base"
+                            placeholder="05xxxxxxxx">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">كلمة المرور *</label>
+                        <input type="password" id="registerPassword"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">تأكيد كلمة المرور *</label>
+                        <input type="password" id="confirmPassword"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base">
+                    </div>
+                </div>
+
+                <!-- Verification Section -->
+                <div id="verificationSection" class="hidden mt-6 space-y-4">
+                    <div class="card p-4 rounded-lg bg-blue-50">
+                        <div class="text-center">
+                            <i class="fas fa-envelope text-2xl text-blue-500 mb-2"></i>
+                            <p class="text-sm text-gray-700 mb-2">تم إرسال رمز التحقق إلى بريدك الإلكتروني</p>
+                            <input type="text" id="emailVerificationCode"
+                                class="w-32 px-3 py-2 border border-gray-300 rounded text-center" maxlength="6"
+                                placeholder="000000">
+                            <button onclick="verifyEmail()"
+                                class="mr-2 px-4 py-2 btn-primary rounded text-sm">تحقق</button>
+                        </div>
+                    </div>
+
+                    <div class="card p-4 rounded-lg bg-green-50">
+                        <div class="text-center">
+                            <i class="fas fa-mobile-alt text-2xl text-green-500 mb-2"></i>
+                            <p class="text-sm text-gray-700 mb-2">تم إرسال رمز التحقق إلى رقم جوالك</p>
+                            <input type="text" id="phoneVerificationCode"
+                                class="w-32 px-3 py-2 border border-gray-300 rounded text-center" maxlength="6"
+                                placeholder="000000">
+                            <button onclick="verifyPhone()"
+                                class="mr-2 px-4 py-2 btn-primary rounded text-sm">تحقق</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex justify-between">
+                    <button onclick="showLogin()"
+                        class="border border-gray-300 px-6 py-3 rounded-lg hover:bg-gray-50">العودة</button>
+                    <button onclick="registerPersonal()" class="btn-primary px-6 py-3 rounded-lg">إنشاء الحساب</button>
+                </div>
+            </div>
+
+            <!-- Company Registration -->
+            <div id="companyRegister" class="hidden">
+                <!-- Step indicator -->
+                <div class="flex justify-center mb-8">
+                    <div class="flex items-center space-x-reverse space-x-4">
+                        <div
+                            class="step-indicator active w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium">
+                            1</div>
+                        <div class="text-xs text-gray-600">نوع الحساب</div>
+                        <div class="w-12 h-0.5 bg-gray-300"></div>
+                        <div
+                            class="step-indicator w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium">
+                            2</div>
+                        <div class="text-xs text-gray-600">المعلومات</div>
+                        <div class="w-12 h-0.5 bg-gray-300"></div>
+                        <div
+                            class="step-indicator w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium">
+                            3</div>
+                        <div class="text-xs text-gray-600">المراجعة</div>
+                    </div>
+                </div>
+
+                <!-- Step 1: Account Type -->
+                <div id="step1" class="card p-8 rounded-2xl">
+                    <h2 class="text-2xl font-bold text-center mb-2">إنشاء حساب تجاري جديد</h2>
+                    <p class="text-gray-600 text-center mb-8">اختر نوع الحساب المناسب لنشاطك التجاري في منصة Evico
+                        Business</p>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="account-type-card p-6 border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
+                            data-type="عامة">
+                            <i class="fas fa-building text-2xl primary-color mb-4"></i>
+                            <h3 class="font-bold mb-2">شركة عامة</h3>
+                            <p class="text-sm text-gray-600">لإدارة الأنشطة التجارية العامة والخدمات المتنوعة بكفاءة
+                                وفعالية عالية.</p>
+                        </div>
+                        <div class="account-type-card p-6 border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
+                            data-type="ملعب">
+                            <i class="fas fa-futbol text-2xl primary-color mb-4"></i>
+                            <h3 class="font-bold mb-2">تأجير ملعب</h3>
+                            <p class="text-sm text-gray-600">مخصص للشركات أو الأفراد الذين يقدمون خدمات الملاعب الرياضية
+                                وإدارة الحجوزات.</p>
+                        </div>
+                        <div class="account-type-card p-6 border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
+                            data-type="أكاديمية">
+                            <i class="fas fa-graduation-cap text-2xl primary-color mb-4"></i>
+                            <h3 class="font-bold mb-2">أكاديمية تدريب</h3>
+                            <p class="text-sm text-gray-600">أكاديمية تدريب الألعاب الرياضية البدنية والإلكترونية مع
+                                برامج تدريبية متخصصة.</p>
+                        </div>
+                        <div class="account-type-card p-6 border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
+                            data-type="فريق">
+                            <i class="fas fa-gamepad text-2xl primary-color mb-4"></i>
+                            <h3 class="font-bold mb-2">فريق إلكتروني</h3>
+                            <p class="text-sm text-gray-600">للفرق الخاصة بالرياضات الإلكترونية وإدارة أنشطتهم
+                                ومسابقاتهم المختلفة.</p>
+                        </div>
+                        <div class="account-type-card p-6 border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
+                            data-type="نادي">
+                            <i class="fas fa-users text-2xl primary-color mb-4"></i>
+                            <h3 class="font-bold mb-2">نادي</h3>
+                            <p class="text-sm text-gray-600">للأندية الرياضية أو الترفيهية الرسمية وإدارة أعضائها
+                                وأنشطتها المتنوعة.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end mt-8">
+                        <button onclick="nextStep()" id="nextStepBtn"
+                            class="btn-primary px-6 py-3 rounded-lg opacity-50" disabled="">التالي</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Company Information -->
+                <div id="step2" class="hidden card p-8 rounded-2xl">
+                    <h2 class="text-2xl font-bold text-center mb-2">معلومات النشاط التجاري</h2>
+                    <p class="text-gray-600 text-center mb-8">يرجى إدخال بيانات نشاطك التجاري بدقة لمساعدتنا في خدمتك
+                        بشكل أفضل</p>
+
+                    <div class="space-y-6">
+                        <h3 class="text-lg font-bold text-gray-800 border-b pb-2">البيانات الأساسية</h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">الاسم التجاري *</label>
+                                <input type="text" id="businessName"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">اسم المالك *</label>
+                                <input type="text" id="ownerName"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">رقم السجل التجاري *</label>
+                                <input type="text" id="commercialRegister"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">تاريخ تأسيس الشركة *</label>
+                                <input type="date" id="establishmentDate"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">المدينة *</label>
+                                <select id="city" class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base">
+                                    <option value="">اختر المدينة</option>
+                                    <option value="الرياض">الرياض</option>
+                                    <option value="جدة">جدة</option>
+                                    <option value="الدمام">الدمام</option>
+                                    <option value="مكة المكرمة">مكة المكرمة</option>
+                                    <option value="المدينة المنورة">المدينة المنورة</option>
+                                    <option value="الطائف">الطائف</option>
+                                    <option value="تبوك">تبوك</option>
+                                    <option value="أبها">أبها</option>
+                                    <option value="الخبر">الخبر</option>
+                                    <option value="الجبيل">الجبيل</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">الحي/المنطقة *</label>
+                                <input type="text" id="district"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">وصف النشاط التجاري *</label>
+                            <textarea id="businessDescription" rows="3"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base"></textarea>
+                        </div>
+
+                        <h3 class="text-lg font-bold text-gray-800 border-b pb-2">معلومات الشركة</h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">عدد الموظفين *</label>
+                                <select id="employeeCount"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base">
+                                    <option value="">اختر العدد</option>
+                                    <option value="1-5">1-5 موظفين</option>
+                                    <option value="6-15">6-15 موظف</option>
+                                    <option value="16-50">16-50 موظف</option>
+                                    <option value="51-100">51-100 موظف</option>
+                                    <option value="101-500">101-500 موظف</option>
+                                    <option value="500+">أكثر من 500 موظف</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">رأس المال *</label>
+                                <select id="capital"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base">
+                                    <option value="">اختر الفئة</option>
+                                    <option value="&lt;100k">أقل من 100,000 ريال</option>
+                                    <option value="100k-500k">100,000 - 500,000 ريال</option>
+                                    <option value="500k-1m">500,000 - 1,000,000 ريال</option>
+                                    <option value="1m-5m">1,000,000 - 5,000,000 ريال</option>
+                                    <option value="5m-10m">5,000,000 - 10,000,000 ريال</option>
+                                    <option value="10m+">أكثر من 10,000,000 ريال</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">نوع النشاط الاقتصادي
+                                    *</label>
+                                <select id="businessType"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base">
+                                    <option value="">اختر النوع</option>
+                                    <option value="تجارة تجزئة">تجارة تجزئة</option>
+                                    <option value="تجارة جملة">تجارة جملة</option>
+                                    <option value="تصنيع">تصنيع</option>
+                                    <option value="خدمات">خدمات</option>
+                                    <option value="تقنية معلومات">تقنية معلومات</option>
+                                    <option value="إنشاءات">إنشاءات</option>
+                                    <option value="مطاعم ومأكولات">مطاعم ومأكولات</option>
+                                    <option value="تعليم وتدريب">تعليم وتدريب</option>
+                                    <option value="رعاية صحية">رعاية صحية</option>
+                                    <option value="رياضة وترفيه">رياضة وترفيه</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">سنوات الخبرة *</label>
+                                <select id="experience"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base">
+                                    <option value="">اختر المدة</option>
+                                    <option value="جديدة">شركة جديدة</option>
+                                    <option value="1-2">1-2 سنة</option>
+                                    <option value="3-5">3-5 سنوات</option>
+                                    <option value="6-10">6-10 سنوات</option>
+                                    <option value="11-20">11-20 سنة</option>
+                                    <option value="20+">أكثر من 20 سنة</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <h3 class="text-lg font-bold text-gray-800 border-b pb-2">معلومات التواصل</h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">البريد الإلكتروني *</label>
+                                <input type="email" id="businessEmail"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">رقم الهاتف *</label>
+                                <input type="tel" id="businessPhone"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">رقم الفاكس</label>
+                                <input type="tel" id="faxNumber"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">الموقع الإلكتروني</label>
+                                <input type="url" id="website"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">العنوان الكامل *</label>
+                            <textarea id="fullAddress" rows="2"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between mt-8">
+                        <button onclick="prevStep()"
+                            class="border border-gray-300 px-6 py-3 rounded-lg hover:bg-gray-50">السابق</button>
+                        <button onclick="nextStep()" class="btn-primary px-6 py-3 rounded-lg">التالي</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Review -->
+                <div id="step3" class="hidden card p-8 rounded-2xl">
+                    <h2 class="text-2xl font-bold text-center mb-2">مراجعة وإنهاء</h2>
+                    <p class="text-gray-600 text-center mb-8">تأكد من صحة البيانات المدخلة قبل إنشاء الحساب</p>
+
+                    <div id="reviewData" class="space-y-4">
+                        <!-- Review data will be populated here -->
+                    </div>
+
+                    <div class="flex justify-between mt-8">
+                        <button onclick="prevStep()"
+                            class="border border-gray-300 px-6 py-3 rounded-lg hover:bg-gray-50">السابق</button>
+                        <button onclick="submitCompanyRegistration()" class="btn-primary px-6 py-3 rounded-lg">إنشاء
+                            الحساب</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboardSection" class="hidden">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">اختر الرتبة للدخول</h2>
+                <p class="text-gray-600">اختر نوع الحساب الذي تريد الدخول إليه</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
+                <!-- Personal Account -->
+                <div class="rank-card card p-6 rounded-2xl" onclick="openDashboard('personal')">
+                    <div class="text-center">
+                        <i class="fas fa-user text-4xl primary-color mb-4"></i>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">حساب فردي</h3>
+                        <p class="text-sm text-gray-600">إدارة حسابك الشخصي</p>
+                    </div>
+                </div>
+
+                <!-- Company Account -->
+                <div class="rank-card card p-6 rounded-2xl" onclick="openDashboard('company')">
+                    <div class="text-center">
+                        <i class="fas fa-building text-4xl primary-color mb-4"></i>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">حساب الشركة</h3>
+                        <p class="text-sm text-gray-600">إدارة شركاتك</p>
+                    </div>
+                </div>
+
+                <!-- Add more features -->
+                <div class="rank-card card p-6 rounded-2xl" onclick="openDashboard('add')">
+                    <div class="text-center">
+                        <i class="fas fa-plus text-4xl text-gray-400 mb-4"></i>
+                        <h3 class="text-lg font-bold text-gray-400 mb-2">إضافة</h3>
+                        <p class="text-sm text-gray-400">إضافة خدمات جديدة</p>
+                    </div>
+                </div>
+
+                <div class="rank-card card p-6 rounded-2xl" onclick="openDashboard('add')">
+                    <div class="text-center">
+                        <i class="fas fa-plus text-4xl text-gray-400 mb-4"></i>
+                        <h3 class="text-lg font-bold text-gray-400 mb-2">إضافة</h3>
+                        <p class="text-sm text-gray-400">إضافة خدمات جديدة</p>
+                    </div>
+                </div>
+
+                <div class="rank-card card p-6 rounded-2xl" onclick="openDashboard('add')">
+                    <div class="text-center">
+                        <i class="fas fa-plus text-4xl text-gray-400 mb-4"></i>
+                        <h3 class="text-lg font-bold text-gray-400 mb-2">إضافة</h3>
+                        <p class="text-sm text-gray-400">إضافة خدمات جديدة</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-8">
+                <button onclick="logout()" class="border border-gray-300 px-6 py-3 rounded-lg hover:bg-gray-50">تسجيل
+                    الخروج</button>
+            </div>
+        </section>
+
+        <!-- Activation Status -->
+        <section id="activationSection" class="hidden max-w-2xl mx-auto">
+            <div class="card p-8 rounded-2xl text-center">
+                <div class="primary-bg w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-check text-white text-2xl"></i>
+                </div>
+
+                <h2 class="text-2xl font-bold text-gray-900 mb-2">قيد التفعيل</h2>
+                <h3 class="text-xl font-medium text-gray-700 mb-4">مرحباً بك في Evico Business</h3>
+                <p class="text-gray-600 mb-8">منصة الأعمال الرقمية المتطورة لإدارة نشاطك التجاري بكفاءة</p>
+
+                <div class="card p-6 rounded-lg mb-8">
+                    <h4 class="text-lg font-bold text-green-600 mb-4">تم إنشاء الحساب بنجاح!</h4>
+                    <p class="text-gray-600 mb-6">نرجو انتظار التفعيل من فريقنا المختص. ستصلك رسالة تأكيد عند اكتمال
+                        المراجعة خلال 24-48 ساعة.</p>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                        <div>
+                            <div class="text-2xl font-bold primary-color">1</div>
+                            <div class="text-sm text-gray-600">يوم منذ التسجيل</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-gray-600">0</div>
+                            <div class="text-sm text-gray-600">مستندات مرفوعة</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-green-600">100%</div>
+                            <div class="text-sm text-gray-600">اكتمال البيانات</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-green-600">آمن</div>
+                            <div class="text-sm text-gray-600">حالة الأمان</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="showDashboard()" class="btn-primary px-8 py-3 rounded-lg">الانتقال إلى
+                    الداشبورد</button>
+            </div>
+        </section>
+
+        <!-- Section 2 Placeholder -->
+        <section id="section2" class="hidden text-center py-12">
+            <div class="card p-12 rounded-2xl">
+                <i class="fas fa-construction text-6xl text-gray-400 mb-6"></i>
+                <h2 class="text-3xl font-bold text-gray-600 mb-4">السكشن الثاني</h2>
+                <p class="text-gray-500 mb-8">هذا القسم قيد التطوير وسيكون متاحاً قريباً</p>
+                <button onclick="showDashboard()" class="btn-primary px-6 py-3 rounded-lg">العودة إلى الداشبورد</button>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Global variables
+        let currentStep = 1;
+        let selectedAccountType = '';
+        let isLoggedIn = false;
+        let loginType = ''; // 'email' or 'phone'
+        let emailVerified = false;
+        let phoneVerified = false;
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function () {
+            try {
+                showLogin();
+                setupEventListeners();
+            } catch (error) {
+                console.error('Initialization error:', error);
+            }
+        });
+
+        function setupEventListeners() {
+            try {
+                // Header buttons
+                const headerLoginBtn = document.getElementById('headerLoginBtn');
+                const headerRegisterBtn = document.getElementById('headerRegisterBtn');
+
+                if (headerLoginBtn) {
+                    headerLoginBtn.addEventListener('click', showLogin);
+                }
+                if (headerRegisterBtn) {
+                    headerRegisterBtn.addEventListener('click', showRegister);
+                }
+
+                // Login field auto-detection
+                const loginField = document.getElementById('loginField');
+                if (loginField) {
+                    loginField.addEventListener('input', function () {
+                        const value = this.value.trim();
+                        const passwordField = document.getElementById('passwordField');
+                        const otpSection = document.getElementById('otpSection');
+
+                        if (passwordField && otpSection) {
+                            // Reset both sections
+                            passwordField.classList.add('hidden');
+                            otpSection.classList.add('hidden');
+
+                            if (value) {
+                                // Check if it's email or phone
+                                if (value.includes('@')) {
+                                    loginType = 'email';
+                                    passwordField.classList.remove('hidden');
+                                } else if (/^05\d{8}$/.test(value.replace(/\s/g, ''))) {
+                                    loginType = 'phone';
+                                    // Auto-send OTP for phone
+                                    setTimeout(() => {
+                                        otpSection.classList.remove('hidden');
+                                    }, 500);
+                                }
+                            }
+                        }
+                    });
+                }
+
+                // Account type selection
+                const accountTypeCards = document.querySelectorAll('.account-type-card');
+                accountTypeCards.forEach(card => {
+                    card.addEventListener('click', function () {
+                        // Remove selection from all cards
+                        accountTypeCards.forEach(c => {
+                            c.classList.remove('selected');
+                        });
+
+                        // Add selection to clicked card
+                        this.classList.add('selected');
+
+                        selectedAccountType = this.dataset.type;
+                        const nextBtn = document.getElementById('nextStepBtn');
+                        if (nextBtn) {
+                            nextBtn.disabled = false;
+                            nextBtn.classList.remove('opacity-50');
+                        }
+                    });
+                });
+
+            } catch (error) {
+                console.error('Event listener setup error:', error);
+            }
+        }
+
+        function showLogin() {
+            try {
+                hideAllSections();
+                const loginSection = document.getElementById('loginSection');
+                if (loginSection) {
+                    loginSection.classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error('Show login error:', error);
+            }
+        }
+
+        function showRegister() {
+            try {
+                hideAllSections();
+                const registerSection = document.getElementById('registerSection');
+                const personalRegister = document.getElementById('personalRegister');
+                const companyRegister = document.getElementById('companyRegister');
+
+                if (registerSection) {
+                    registerSection.classList.remove('hidden');
+                }
+                if (personalRegister) {
+                    personalRegister.classList.remove('hidden');
+                }
+                if (companyRegister) {
+                    companyRegister.classList.add('hidden');
+                }
+            } catch (error) {
+                console.error('Show register error:', error);
+            }
+        }
+
+        function showDashboard() {
+            try {
+                if (!isLoggedIn) {
+                    showLogin();
+                    return;
+                }
+                hideAllSections();
+                const dashboardSection = document.getElementById('dashboardSection');
+                if (dashboardSection) {
+                    dashboardSection.classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error('Show dashboard error:', error);
+            }
+        }
+
+        function hideAllSections() {
+            try {
+                const sections = ['loginSection', 'registerSection', 'dashboardSection', 'activationSection', 'section2'];
+                sections.forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        element.classList.add('hidden');
+                    }
+                });
+            } catch (error) {
+                console.error('Hide sections error:', error);
+            }
+        }
+
+        // Login functions
+        function handleLogin() {
+            try {
+                const loginField = document.getElementById('loginField');
+                if (!loginField) return;
+
+                const loginFieldValue = loginField.value;
+
+                if (!loginFieldValue) {
+                    showCustomAlert('يرجى إدخال البريد الإلكتروني أو رقم الجوال');
+                    return;
+                }
+
+                if (loginType === 'email') {
+                    const passwordField = document.getElementById('loginPassword');
+                    if (!passwordField) return;
+
+                    const password = passwordField.value;
+                    if (!password) {
+                        showCustomAlert('يرجى إدخال كلمة المرور');
+                        return;
+                    }
+                    // Simulate email login
+                    isLoggedIn = true;
+                    showDashboard();
+                } else if (loginType === 'phone') {
+                    const otpCodeField = document.getElementById('otpCode');
+                    if (!otpCodeField) return;
+
+                    const otp = otpCodeField.value;
+                    if (!otp || otp.length < 1) {
+                        showCustomAlert('يرجى إدخال رمز التحقق');
+                        return;
+                    }
+                    // Simulate OTP verification
+                    isLoggedIn = true;
+                    showDashboard();
+                } else {
+                    showCustomAlert('يرجى إدخال بريد إلكتروني صحيح أو رقم جوال صحيح');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                showCustomAlert('حدث خطأ أثناء تسجيل الدخول');
+            }
+        }
+
+        function sendOTP() {
+            try {
+                showCustomAlert('تم إرسال رمز التحقق مرة أخرى');
+            } catch (error) {
+                console.error('Send OTP error:', error);
+            }
+        }
+
+        // Registration functions
+        function registerPersonal() {
+            try {
+                const fields = ['firstName', 'lastName', 'registerEmail', 'registerPhone', 'registerPassword', 'confirmPassword'];
+                const values = {};
+
+                for (let field of fields) {
+                    const element = document.getElementById(field);
+                    if (!element) {
+                        showCustomAlert('خطأ في النموذج');
+                        return;
+                    }
+                    values[field] = element.value;
+                    if (!values[field]) {
+                        showCustomAlert('يرجى ملء جميع الحقول المطلوبة');
+                        return;
+                    }
+                }
+
+                if (values.registerPassword !== values.confirmPassword) {
+                    showCustomAlert('كلمة المرور وتأكيد كلمة المرور غير متطابقتين');
+                    return;
+                }
+
+                // Show verification section
+                const verificationSection = document.getElementById('verificationSection');
+                if (verificationSection) {
+                    verificationSection.classList.remove('hidden');
+                    showCustomAlert('تم إرسال رموز التحقق إلى البريد الإلكتروني ورقم الجوال');
+                }
+            } catch (error) {
+                console.error('Register personal error:', error);
+                showCustomAlert('حدث خطأ أثناء التسجيل');
+            }
+        }
+
+        function verifyEmail() {
+            try {
+                const codeField = document.getElementById('emailVerificationCode');
+                if (!codeField) return;
+
+                const code = codeField.value;
+                if (code && code.length >= 1) {
+                    emailVerified = true;
+                    codeField.disabled = true;
+                    const container = codeField.closest('.bg-blue-50');
+                    if (container) {
+                        container.classList.remove('bg-blue-50');
+                        container.classList.add('bg-green-50');
+                    }
+                    showCustomAlert('تم التحقق من البريد الإلكتروني بنجاح');
+                    checkBothVerified();
+                } else {
+                    showCustomAlert('يرجى إدخال رمز التحقق');
+                }
+            } catch (error) {
+                console.error('Verify email error:', error);
+            }
+        }
+
+        function verifyPhone() {
+            try {
+                const codeField = document.getElementById('phoneVerificationCode');
+                if (!codeField) return;
+
+                const code = codeField.value;
+                if (code && code.length >= 1) {
+                    phoneVerified = true;
+                    codeField.disabled = true;
+                    showCustomAlert('تم التحقق من رقم الجوال بنجاح');
+                    checkBothVerified();
+                } else {
+                    showCustomAlert('يرجى إدخال رمز التحقق');
+                }
+            } catch (error) {
+                console.error('Verify phone error:', error);
+            }
+        }
+
+        function checkBothVerified() {
+            try {
+                if (emailVerified && phoneVerified) {
+                    // Move to company registration
+                    const personalRegister = document.getElementById('personalRegister');
+                    const companyRegister = document.getElementById('companyRegister');
+
+                    if (personalRegister) {
+                        personalRegister.classList.add('hidden');
+                    }
+                    if (companyRegister) {
+                        companyRegister.classList.remove('hidden');
+                    }
+
+                    currentStep = 1;
+                    updateStepIndicator();
+                }
+            } catch (error) {
+                console.error('Check verification error:', error);
+            }
+        }
+
+        // Company registration steps
+        function nextStep() {
+            try {
+                if (currentStep === 1 && !selectedAccountType) {
+                    showCustomAlert('يرجى اختيار نوع الحساب');
+                    return;
+                }
+
+                if (currentStep < 3) {
+                    const currentStepElement = document.getElementById(`step${currentStep}`);
+                    if (currentStepElement) {
+                        currentStepElement.classList.add('hidden');
+                    }
+
+                    currentStep++;
+
+                    const nextStepElement = document.getElementById(`step${currentStep}`);
+                    if (nextStepElement) {
+                        nextStepElement.classList.remove('hidden');
+                    }
+
+                    updateStepIndicator();
+
+                    if (currentStep === 3) {
+                        populateReviewData();
+                    }
+                }
+            } catch (error) {
+                console.error('Next step error:', error);
+            }
+        }
+
+        function prevStep() {
+            try {
+                if (currentStep > 1) {
+                    const currentStepElement = document.getElementById(`step${currentStep}`);
+                    if (currentStepElement) {
+                        currentStepElement.classList.add('hidden');
+                    }
+
+                    currentStep--;
+
+                    const prevStepElement = document.getElementById(`step${currentStep}`);
+                    if (prevStepElement) {
+                        prevStepElement.classList.remove('hidden');
+                    }
+
+                    updateStepIndicator();
+                }
+            } catch (error) {
+                console.error('Previous step error:', error);
+            }
+        }
+
+        function updateStepIndicator() {
+            try {
+                const indicators = document.querySelectorAll('.step-indicator');
+                for (let i = 0; i < indicators.length; i++) {
+                    if (indicators[i]) {
+                        indicators[i].classList.remove('active', 'completed');
+
+                        if (i + 1 < currentStep) {
+                            indicators[i].classList.add('completed');
+                        } else if (i + 1 === currentStep) {
+                            indicators[i].classList.add('active');
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('Update step indicator error:', error);
+            }
+        }
+
+        function populateReviewData() {
+            try {
+                const reviewData = document.getElementById('reviewData');
+                if (!reviewData) return;
+
+                const businessName = document.getElementById('businessName');
+                const ownerName = document.getElementById('ownerName');
+                const commercialRegister = document.getElementById('commercialRegister');
+                const city = document.getElementById('city');
+                const businessEmail = document.getElementById('businessEmail');
+
+                reviewData.innerHTML = `
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="card p-4 rounded-lg">
+                            <h4 class="font-bold mb-2 primary-color">نوع الحساب</h4>
+                            <p class="text-gray-600">${selectedAccountType}</p>
+                        </div>
+                        <div class="card p-4 rounded-lg">
+                            <h4 class="font-bold mb-2 primary-color">الاسم التجاري</h4>
+                            <p class="text-gray-600">${businessName ? businessName.value || 'غير محدد' : 'غير محدد'}</p>
+                        </div>
+                        <div class="card p-4 rounded-lg">
+                            <h4 class="font-bold mb-2 primary-color">اسم المالك</h4>
+                            <p class="text-gray-600">${ownerName ? ownerName.value || 'غير محدد' : 'غير محدد'}</p>
+                        </div>
+                        <div class="card p-4 rounded-lg">
+                            <h4 class="font-bold mb-2 primary-color">المدينة</h4>
+                            <p class="text-gray-600">${city ? city.value || 'غير محدد' : 'غير محدد'}</p>
+                        </div>
+                        <div class="card p-4 rounded-lg">
+                            <h4 class="font-bold mb-2 primary-color">رقم السجل التجاري</h4>
+                            <p class="text-gray-600">${commercialRegister ? commercialRegister.value || 'غير محدد' : 'غير محدد'}</p>
+                        </div>
+                        <div class="card p-4 rounded-lg">
+                            <h4 class="font-bold mb-2 primary-color">البريد الإلكتروني</h4>
+                            <p class="text-gray-600">${businessEmail ? businessEmail.value || 'غير محدد' : 'غير محدد'}</p>
+                        </div>
+                    </div>
+                `;
+            } catch (error) {
+                console.error('Populate review data error:', error);
+            }
+        }
+
+        function submitCompanyRegistration() {
+            try {
+                isLoggedIn = true;
+                hideAllSections();
+                const activationSection = document.getElementById('activationSection');
+                if (activationSection) {
+                    activationSection.classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error('Submit registration error:', error);
+            }
+        }
+
+        // Dashboard functions
+        function openDashboard(type) {
+            try {
+                if (type === 'personal' || type === 'company' || type === 'add') {
+                    hideAllSections();
+                    const section2 = document.getElementById('section2');
+                    if (section2) {
+                        section2.classList.remove('hidden');
+                    }
+                }
+            } catch (error) {
+                console.error('Open dashboard error:', error);
+            }
+        }
+
+        function logout() {
+            try {
+                isLoggedIn = false;
+                selectedAccountType = '';
+                currentStep = 1;
+                loginType = '';
+                emailVerified = false;
+                phoneVerified = false;
+
+                // Clear forms
+                const inputs = document.querySelectorAll('input, select, textarea');
+                inputs.forEach(input => {
+                    if (input) {
+                        input.value = '';
+                        input.disabled = false;
+                    }
+                });
+
+                // Reset verification section
+                const verificationSection = document.getElementById('verificationSection');
+                if (verificationSection) {
+                    verificationSection.classList.add('hidden');
+                }
+
+                showLogin();
+            } catch (error) {
+                console.error('Logout error:', error);
+            }
+        }
+
+        // Custom alert function
+        function showCustomAlert(message) {
+            try {
+                const modal = document.createElement('div');
+                modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+                modal.innerHTML = `
+                    <div class="bg-white p-6 rounded-lg max-w-sm w-full mx-4">
+                        <div class="text-center">
+                            <i class="fas fa-exclamation-circle text-3xl text-yellow-500 mb-4"></i>
+                            <p class="text-gray-700 mb-4">${message}</p>
+                            <button onclick="this.closest('.fixed').remove()" class="btn-primary px-6 py-2 rounded-lg">حسناً</button>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+            } catch (error) {
+                console.error('Show alert error:', error);
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>
